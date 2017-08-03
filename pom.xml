@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.ioctl</groupId>
+    <artifactId>octopus</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <description>
+        A trivial forking ClassLoader implementation.
+
+        Sometimes, the need arises to duplicate a part of the class hierarchy
+        several times - typically so that each copy can have access to its own
+        static members.
+
+        This package provides an implementation that does precisely that; it relies
+        upon a parent ClassLoader to provide the bytecode for loaded classes, which
+        it then redefines within its own scope.
+
+        Reflection is typically then required to access that new, duplicated scope;
+        a trivial bridging method is supplied which permits objects of the subordinate
+        scope to be proxied and treated as members of their isomorphic types in the
+        scope of the parent ClassLoader.
+    </description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>2.5</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <connection>scm:git:git@github.com:jan-g/octopus</connection>
+        <developerConnection>scm:git:git@github.com:jan-g/octopus</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+</project>
